@@ -1,0 +1,52 @@
+﻿<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<link href="../../css/40066_type5/backstage.css" type="text/css" rel="stylesheet" />
+<script type="text/javascript" src="../../js/jquery-1.4.2.min.js"></script>
+<script type="text/javascript" src="../../common/Inc/calendar/WdatePicker.js"></script>
+<title>产品查询</title>
+</head>
+<body>
+<form action="#" id="form1" target="showtable" method="post"  >
+<div class="frame_total">
+  <div class="title">产品查询及修改</div>
+  <div class="title_check">查询条件</div>
+  <table width="100%" border="0" cellpadding="0" cellspacing="0">
+    <tr>
+      <td height="30" align="right">申请时间：</td>
+      <td align="left">
+        <input name="startAuditDate" type="text" class="input04" onFocus="WdatePicker({doubleCalendar:true,dateFmt:'yyyy-MM-dd',skin:'whyGreen'})" >
+        <img src="/images/40066_type5/backstage/1102.gif" width="14" height="16"   align="absmiddle" style="cursor:pointer;"> 至
+        <input name="endAuditDate" type="text" class="input04" onFocus="WdatePicker({doubleCalendar:true,dateFmt:'yyyy-MM-dd',skin:'whyGreen'})">
+        <img src="/images/40066_type5/backstage/1102.gif" width="14" height="16"   align="absmiddle" style="cursor:pointer;">      </td>
+      <td align="right">产品分类：</td>
+      <td align="left">
+	      <select name="goodsort" class="select02"  >
+	          <option value="" selected>全部</option>
+	          <option value="1">其他</option>
+          </select>
+      </td>
+      <td height="30" align="right">产品状态：</td>
+      <td align="left">
+	      <select name="status" class="select02">
+	          <option value="" selected >全部</option>
+	          <option value="1">其他</option>
+        </select>
+     </td>
+    </tr>
+    <tr>
+    </tr>
+    <tr>
+      <td height="50" colspan="6" align="center">
+      <input type="button" class="button01" value="查　询"/>
+      <input type="reset" class="button01" value="重  置" />
+      </td>
+    </tr>
+  </table>
+  <br />
+  <iframe name="showtable" id="showtable" src="demo_list.html" frameborder=0 width="100%" scrolling="no"></iframe>
+</div>
+</form>
+</body>
+</html>

@@ -1,0 +1,122 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<link href="../../css/40066_type5/backstage.css" type="text/css" rel="stylesheet" />
+<script type="text/javascript" src="../../js/jquery-1.4.2.min.js"></script>
+<title>产品查询</title>
+<script type="text/javascript">
+	function setIFrame(){
+		parent.document.getElementById("showtable").height = document.body.scrollHeight;
+	}
+	
+	var _pageNum = '1';
+	function getData(pageNum){
+		var pageCount = '362';
+		if(pageNum>pageCount){
+			alert("已经是最后一页了");
+			return false;
+		}
+		if(pageNum<=0){
+			alert("已经是第一页了");
+			return false;
+		}
+		var form2 = document.getElementById("form2");
+		
+		form2.action ="pageNum="+pageNum;
+		form2.submit();
+	}
+	function checkAll(){
+		var allCheck = document.getElementById("allCheck");
+		
+		if(allCheck.checked){
+			$("input:checkbox").attr("checked",true);
+		}else{
+			$("input:checkbox").attr("checked",false);
+		}
+	}
+	
+	var clickedtr = null;
+	function trclick(obj){
+		if(clickedtr!=null){
+			clickedtr.style.backgroundColor="";
+		}
+		obj.style.backgroundColor="#e4f3ff";
+		clickedtr = obj;
+	}
+	
+	function trmoveout(obj){
+		if(clickedtr!=obj){
+			obj.style.backgroundColor="";
+		}
+	}
+</script>
+</head>
+
+<body onload="setIFrame();" >
+<form action="" method="post" id="form2" >
+<div class="frame_total">
+  <div class="title_check">查询结果</div>
+  <table width="100%" border="0" cellpadding="0" cellspacing="0">
+    <tr>
+      <td height="25" class="title_ii_m"></td>
+      <td align="center" class="title_ii_m">选择</td>
+      <td align="center" class="title_ii_m">产品编号 </td>
+      <td align="center" class="title_ii_m">产品名称</td>
+      <td align="center" class="title_ii_m">申请单位</td>
+      <td align="center" class="title_ii_m">所在城市 </td>
+      <td align="center" class="title_ii_m">产品分类 </td>
+      <td align="center" class="title_ii_m">虚拟数 </td>
+      <td align="center" class="title_ii_m">产品总数 </td>
+      <td align="center" class="title_ii_m">已售</td>
+      <td align="center" class="title_ii_m">退款数</td>
+      <td align="center" class="title_ii_m">团购价格 </td>
+      <td align="center" class="title_ii_m">套票价格 </td>
+      <td align="center" class="title_ii_m">产品有效期</td>
+      <td align="center" class="title_ii_m">产品状态 </td>
+    </tr>
+    
+    <tr onMouseOver="this.style.backgroundColor='#e4f3ff'" onMouseOut="trmoveout(this);" onClick="trclick(this);">
+      <td height="30" class="border_b">&nbsp; </td>
+      <td align="center" class="border_b">
+      	<input type="checkbox" value="D1612220000003" name="handleGoodsId"  />
+      </td>
+      <td class="border_b" align="center">
+      		<a href="#" target="_blank" class="color_blue">D1612220000000</a>
+      </td>
+      <td align="center" class="border_b" title="享大连-南宁含税往返机票+四星级酒店1晚">
+	      	<a href="#" target="_blank" class="color_blue">【南宁】仅2929元</a>
+      </td>
+      <td class="border_b" align="center">XXXXXX&nbsp;</td>
+      <td class="border_b" align="center">XXXXXX&nbsp;</td>
+      <td class="border_b" align="center">XXXXXX&nbsp;</td>
+      <td class="border_b" align="center">XXXXXX&nbsp;</td>
+      <td class="border_b" align="center">XXXXXX&nbsp;</td>
+      <td class="border_b" align="center">XXXXXX&nbsp;</td>
+      <td class="border_b" align="center">XXXXXX&nbsp;</td>
+      <td class="border_b" align="center">XXXXXX&nbsp;</td>
+      <td class="border_b" align="center">&nbsp;</td>
+      <td class="border_b" align="center">2017-01-01 00:00:00至2017-01-31 23:59:59</td>
+      <td class="border_b" align="center"><input type="hidden" id="goodsIdD1612220000003" value="未提交" >未提交</td>
+    </tr>
+  </table>
+  <table border="0" cellpadding="0" cellspacing="0" width="100%" class="color_gray">
+   <tr>
+   	 <td height="35">
+		<input type="checkbox" id="allCheck" onclick="checkAll();" />全选      
+	 </td>
+     <td height="35"  align="right" >共XXXX条记录  第1页 / 共XXXX页  
+     <a href="javascript:void(0)" onclick="getData(1);" >首 页</a> | 
+     <a href="javascript:void(0)" onclick="getData(1-1);" >上一页</a> | 
+     <a href="javascript:void(0)" onclick="getData(1+1);" >下一页</a> | 
+     <a href="javascript:void(0)" onclick="getData(362);" >末 页</a>   跳转  
+		<select id="choicePage" name="select7" ><option value="1" selected="selected" >1</option></select>页&nbsp;
+	</td>
+  </tr>
+</table>
+
+</div>
+</form>
+
+</body>
+</html>

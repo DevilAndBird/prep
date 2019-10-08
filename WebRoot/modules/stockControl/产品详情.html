@@ -1,0 +1,176 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+
+<script type="text/javascript" src="../../js/jquery-1.4.2.min.js"></script>
+<script type="text/javascript" src="../../common/kindeditor/kindeditor.js"></script>
+<script type="text/javascript" src="../../common/Inc/calendar/WdatePicker.js"></script>
+<script type="text/javascript" src="../../common/JS/ajax.js"></script>
+<script type="text/javascript" src="../../common/CoordiJS/client.js"></script>
+<link href="../../css/40066_type5/backstage.css" type="text/css" rel="stylesheet" />
+<title>产品添加</title>
+
+</head>
+<body>
+<input type="hidden" value="0" id="sysnum" />
+<input type="hidden" name="hiddenMsg" id="hiddenMsg" value=""  >
+<form action="/ProductServlet?type=add" name="form1" id="form1" method="post"  >
+<input type="hidden" id="hiddenGoodsId" name="hiddenGoodsId" value="D1706220000011" >
+<input type="hidden" id="isShowbottom" name="isShowbottom" value="1" >
+<input type="hidden" id="ideahh"  value="" >
+<input type="hidden" id="impotcontact"  value="1" >
+<body onload="menu_change(0);" >
+<form action="" name="form1" id="form1" method="post" >
+<input type="hidden" name="id" id="id" value="D1706090000001"/>
+<div class="frame_total" style="" >
+  <div class="title">产品修改&nbsp;&nbsp;&nbsp;
+  <span style="color:red;" id="span_status" >未提交</span>&nbsp;&nbsp;&nbsp;
+  <span style="color:red;" id="span_goodsId" >D17xxxxxxxx</span>
+  <span style="margin-left:50px;color:#007cba;" >供应商产品编号：</span>
+  <span style="color:#007cba;" >xxxxxxxxxxxxxxxx</span>
+  </div>
+  <div class="add_menu">
+    <a href="javascript:void(0);" class="add_menu_change" id="menu01" onclick="menu_change(0);">1.基本信息</a>
+	<a href="javascript:void(0);" class="add_menu_inner" id="menu02" onclick="menu_change(1);">2.销售信息</a>
+    <a href="javascript:void(0);" class="add_menu_inner" id="menu03" onclick="menu_change(2);">3.产品详情</a>
+    <!--<a href="javascript:void(0);" class="add_menu_inner" id="menu06" onclick="menu_change(5);" style="width:130px;">3.产品详情(旧编辑器)</a>-->
+    <a href="javascript:void(0);" class="add_menu_inner" id="menu04" onclick="menu_change(3);">4.产品图片</a>
+    <a href="javascript:void(0);" class="add_menu_inner" id="menu05" onclick="menu_change(4);">5.其他设置</a>
+  </div>
+  <br />
+	<div class="frame_total">
+  <table border="0" cellpadding="0" cellspacing="0" width="100%" id="base_message" >
+    <tr>
+      <td height="30" align="right" class="lh30">产品分类：</td>
+      <td align="left">
+      	 <select class="select02" name="goodSort" id="goodSort">
+      	 	<option value="">请选择</option>
+      	 	
+      	 		
+      	 		
+      	 			<option value="100232">xxxx</option>
+      	 		
+      	 	
+      	 </select>
+      <span class="color_red">*</span>
+	  <span class="color_gray">（从产品分类管理中获取，若没相应分类请与管理员联系）  </span></td>
+    </tr>
+    
+    <tr>
+      <td height="30" align="right" class="lh30">涉及产品：</td>
+      <td align="left" id="jdcheck">
+      	
+ 			
+ 			
+ 				<span><label><input id="involve" title="免税品" name="involve" type="checkbox" value="100232"  onclick="disAdd(this);" />xxx</label></span>
+ 			
+      	
+ 			
+ 			
+ 				<span><label><input id="involve" title="高端定制" name="involve" type="checkbox" value="100285"  onclick="disAdd(this);" />xxx</label></span>
+ 			
+      	
+ 			
+ 			
+ 				
+ 			
+ 			
+      	
+	  <span class="color_gray">（从产品分类管理中获取，若没相应分类请与管理员联系）  </span></td>
+    </tr>
+<table border="0" cellpadding="0" cellspacing="0" width="100%">
+    <tr>
+      <td height="30" colspan="2" align="left" class="supply_title">产品审核处理</td>
+    </tr>
+    <tr>
+      <td width="10%" height="30" align="right" class="lh30">产品申请备注：</td>
+      <td width="90%" align="left">
+        <textarea name="remark" rows="5" class="textarea01"  style="width:95%;" id="remark" ></textarea>
+      </td>
+    </tr>
+    
+    <tr >
+      <td height="30" colspan="2" align="center" class="lh30" id="functiontd">
+       
+         	
+      	
+         	
+      	
+         	
+      	
+         	
+      	
+         	
+      	
+         	
+         		
+         		
+         			<input name="" type="button" class="button01" value="H5预览" onclick="window.open('https://mtrip.csair.com/waptuan/action/CouponAction.shtml?mhd=goodDetail&goodsid=D1706220000011')" />
+         		
+         	
+      	
+         	
+         		
+         			<input name="" type="button" class="button01" value="APP预览" onclick="window.open('https://tripapp.csair.com/waptuan/action/CouponAction.shtml?mhd=goodDetail&goodsid=D1706220000011')" />
+         		
+         		
+         	
+      	
+         	
+      	
+         	
+      	
+         	
+      	
+      	
+      	<input name="" type="button" class="button01" value="PC预览" onclick="window.open('http://tuan.csairholiday.com/module/groupon/grouponAction.do?mhd=productMessage&goodsid=D1706220000011')" />
+      	
+      	
+        
+       
+      	
+	      	
+	      	  <input name="" type="button" class="button01" value="提交审核" onclick="changeStatus(1);" />
+	      	
+      	
+      	
+      	
+	    
+	    
+	    
+	    
+	    
+	    
+	    
+		    
+		      <input name="" type="button" class="button01" value="修 改" onclick="sub();" />
+		    
+	    
+	    
+	    
+		    
+		      <!--<input name="" type="button" class="button01" value="取 消" onclick="changeStatus(6);"/>-->
+		    
+	    
+	     
+	     
+	     <input name="" type="button" class="button01" value="操作记录"  onclick="conHistory();"/>
+         <img id="loadimg" src="images/loadin.gif" style="display:none;" />
+      </td>
+    </tr>
+</table>
+  
+</div>
+</form>
+</body>
+
+
+<br />
+<br />
+
+
+</div>
+</form>
+</body>
+</html>
