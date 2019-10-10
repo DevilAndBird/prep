@@ -23,28 +23,21 @@
       var form = document.getElementById("refundForm");
       form.submit();
   }
-  serializeObject=function(form){
-      var o={};
-      $.each(form.serializeArray(),function(index){
-          if(o[this['name']]){
-              o[this['name']]=o[this['name']]+","+this['value'];
-          }else{
-              o[this['name']]=this['value'];
-          }
-      });
-      return o;
-  };
-  $(':submit').on('click',function(){
-      $.ajax({
-          url:"RefundServlet?method=selectByPage",
-          type:"POST",
-          data:JSON.stringify($('refundForm').serializeObject()),
-          contentType:"application/json",  //缺失会出现URL编码，无法转成json对象
-          success:function(){
-              alert("成功");
-          }
-      });
+  // 重置
+  $('.reset').click(function() {
+      $('#orderno').val('');
+      $('#refundno').val('');
+      $('#startRefundDate').val('');
+      $('#endRefundDate').val('');
+      $('#operator').val('');
+      $('#startRefundMoney').val('');
+      $('#endRefundMoney').val('');
+      $('#startAuditDate').val('');
+      $('#endAuditDate').val('');
+      $("#source").find("option[value='']").attr("selected",true);
+      $("#refundStatus").find("option[value='']").attr("selected",true);
   });
+
 </script>
 <body>
 <form action="RefundServlet?method=selectByPage" id="refundForm" method="post"  >
@@ -105,8 +98,8 @@
     </tr>
     <tr>
       <td height="50" colspan="6" align="center">
-      <input type="submit" class="button01" id="query" value="查  询"/>
-      <input type="reset" class="button01" value="重  置" />
+      <input type="submit" class="button01" value="查  询"/>
+      <input type="reset" class="button01" id="resetbut" value="重  置" />
       <input type="reset" class="button01" value="报表下载" />
       </td>
     </tr>
@@ -147,7 +140,6 @@
             <input type="hidden" id="pages" name="pages" value="${pageInfo.pages}">
             <input type="hidden" id="pageNum" name="pageNum" value="${pageInfo.pageNum}">
             <input type="hidden" id="pageSize" name="pageSize" value="${pageInfo.pageSize}">
-            <input type="hidden" id="queryRefundListParam" name="pageSize" value="${pageInfo.pageSize}">
           </td>
           <td height="35"  align="right" >共${pageInfo.total}条记录  第${pageInfo.pageNum}页 / 共${pageInfo.pages}页
             <a href="javascript:void(0)" onclick="getData(1);" >首 页</a> |

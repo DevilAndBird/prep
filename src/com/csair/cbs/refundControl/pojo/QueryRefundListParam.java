@@ -18,13 +18,13 @@ import java.util.Date;
 public class QueryRefundListParam implements Serializable {
     private static final long serialVersionUID = -4970582606959339099L;
     //当前页
-    private int pageNum;
+    private Integer pageNum;
     //每页的数量
-    private int pageSize;
+    private Integer pageSize;
     //总记录数
-    private long total;
+    private Long total;
     //总页数
-    private int pages;
+    private Integer pages;
     //订单号
     private String orderno;
     // 退款单号
@@ -42,9 +42,9 @@ public class QueryRefundListParam implements Serializable {
     //退款状态
     private String refundStatus;
     //审核日期起
-    private String startAuditDate;
+    private Date startAuditDate;
     //审核日期终
-    private String endAuditDate;
+    private Date endAuditDate;
     //订单来源
     private String source;
 

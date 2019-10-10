@@ -9,9 +9,10 @@ import com.csair.cbs.refundControl.service.RefundService;
 import com.csair.cbs.util.HttpClientUtil;
 import com.csair.cbs.util.JsonParser;
 import org.apache.commons.lang3.StringUtils;
+import org.springframework.stereotype.Service;
 
 import java.io.IOException;
-
+@Service
 public class RefundServiceImpl implements RefundService {
     @Override
     public PageInfo<OrderRefundInfo> selectByPage(QueryRefundListParam queryRefundListParam) throws IOException {

@@ -1,16 +1,17 @@
 package com.csair.cbs.util;
 
 
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
-import java.io.IOException;
 import org.apache.commons.lang3.StringUtils;
-
 import org.springframework.web.context.request.RequestAttributes;
 import org.springframework.web.context.request.RequestContextHolder;
 import org.springframework.web.context.request.ServletRequestAttributes;
 import org.springframework.web.context.request.ServletWebRequest;
+
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
+import java.io.IOException;
+import java.util.Date;
 
 public class ServletUtils {
 
@@ -58,13 +59,23 @@ public class ServletUtils {
     }
 
     /**
+     * 获取Float参数
+     *
+     * @param name 参数名
+     * @return Integer 参数值
+     */
+    public static Float getParameterToFloat(String name,HttpServletRequest request) {
+        return toFloat(request.getParameter(name), null);
+    }
+
+    /**
      * 获取Integer参数
      *
      * @param name 参数名
      * @return Integer 参数值
      */
-    public static Integer getParameterToInt(String name) {
-        return toInt(getRequest().getParameter(name), null);
+    public static Integer getParameterToInt(String name,HttpServletRequest request) {
+        return toInt(request.getParameter(name), null);
     }
 
     /**
@@ -74,8 +85,8 @@ public class ServletUtils {
      * @param defaultValue 默认值
      * @return Integer 参数值
      */
-    public static Integer getParameterToInt(String name, Integer defaultValue) {
-        return toInt(getRequest().getParameter(name), defaultValue);
+    public static Integer getParameterToInt(String name, Integer defaultValue,HttpServletRequest request) {
+        return toInt(request.getParameter(name), defaultValue);
     }
 
     /**
@@ -192,6 +203,40 @@ public class ServletUtils {
         } catch (Exception e) {
             return defaultValue;
         }
+    }
+
+    /**
+     * 转换为Float<br>
+     * 如果给定的值为空，或者转换失败，返回默认值<br>
+     * 转换失败不会报错
+     *
+     * @param value        被转换的值
+     * @param defaultValue 转换错误时的默认值
+     * @return Float
+     */
+    public static Float toFloat(Object value, Float defaultValue) {
+        if (value == null) {
+            return defaultValue;
+        }
+
+        if (value instanceof Float) {
+            return (Float) value;
+        }
+
+        final String valueStr = toStr(value, null);
+        if (StringUtils.isEmpty(valueStr)) {
+            return defaultValue;
+        }
+        try {
+            return Float.parseFloat(valueStr.trim());
+        } catch (Exception e) {
+            return defaultValue;
+        }
+    }
+
+    public static Date getParameterToDate(String name,HttpServletRequest request){
+        String parameter = request.getParameter(name);
+        return DateUtil.fomatDate(parameter);
     }
 
     /**

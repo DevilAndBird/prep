@@ -33,7 +33,6 @@
     <tr>
       <td height="30" colspan="3" align="left" class="supply_title">基础信息</td>
     </tr>
-
     <tr>
         <input type="hidden" id="refundno" value="${orderRefundInfo.refundno}">
         <td align="right">退款申请单号：</td><td align="left">${orderRefundInfo.refundno}</td>

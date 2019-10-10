@@ -8,16 +8,13 @@ import com.csair.cbs.refundControl.pojo.QueryRefundListParam;
 import com.csair.cbs.refundControl.service.RefundService;
 import com.csair.cbs.refundControl.service.impl.RefundServiceImpl;
 import com.csair.cbs.util.BaseServlet;
-import com.csair.cbs.util.JsonParser;
-import jdk.nashorn.internal.parser.JSONParser;
-import org.springframework.web.bind.annotation.RequestBody;
+import com.csair.cbs.util.ServletUtils;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
-
 
 public class RefundServlet extends BaseServlet {
 
@@ -48,10 +45,9 @@ public class RefundServlet extends BaseServlet {
         request.getRequestDispatcher("/modules/refundControl/refund_detial.jsp").include(request, response);
     }
 
-    public void selectByPage(HttpServletRequest request, HttpServletResponse response,@RequestBody String jsonObj) throws IOException, ServletException {
+    public void selectByPage(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
         RefundService refundservice = new RefundServiceImpl();
-        QueryRefundListParam queryRefundListParam = JsonParser.fromJson(jsonObj, QueryRefundListParam.class);
-        PageInfo<OrderRefundInfo> pageInfo = refundservice.selectByPage(queryRefundListParam);
+        PageInfo<OrderRefundInfo> pageInfo = refundservice.selectByPage(tranformQuery(request));
         HttpSession session = request.getSession();
         session.setAttribute("pageInfo",pageInfo);
         request.getRequestDispatcher("/modules/refundControl/refund_list.jsp").include(request, response);
@@ -64,7 +60,24 @@ public class RefundServlet extends BaseServlet {
         String status = request.getParameter("status");
         qrderRefundInfoReq.setRefundno(refundno);
         qrderRefundInfoReq.setStutas(status);
+    }
 
+    private QueryRefundListParam tranformQuery(HttpServletRequest request){
+        QueryRefundListParam queryRefundListParam = new QueryRefundListParam();
+        queryRefundListParam.setPageNum(ServletUtils.getParameterToInt("pageNum",10,request));
+        queryRefundListParam.setPageSize(ServletUtils.getParameterToInt("pageSize",1,request));
+        queryRefundListParam.setRefundno(request.getParameter("refundno"));
+        queryRefundListParam.setOrderno(request.getParameter("orderno"));
+        queryRefundListParam.setStartRefundDate(ServletUtils.getParameterToDate("startRefundDate",request));
+        queryRefundListParam.setEndRefundDate(ServletUtils.getParameterToDate("endRefundDate",request));
+        queryRefundListParam.setOperator(request.getParameter("operator"));
+        queryRefundListParam.setStartRefundMoney(ServletUtils.getParameterToFloat("startRefundMoney",request));
+        queryRefundListParam.setEndRefundMoney(ServletUtils.getParameterToFloat("endRefundMoney",request));
+        queryRefundListParam.setRefundStatus(request.getParameter("refundStatus"));
+        queryRefundListParam.setStartAuditDate(ServletUtils.getParameterToDate("startAuditDate",request));
+        queryRefundListParam.setEndAuditDate(ServletUtils.getParameterToDate("endAuditDate",request));
+        queryRefundListParam.setSource(request.getParameter("source"));
+        return queryRefundListParam;
     }
 
 }
